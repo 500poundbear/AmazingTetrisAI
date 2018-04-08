@@ -7,27 +7,22 @@ public class ParentSelection {
   
   static double esp = 1e-10;
   
-  public static ArrayList<Individual> RouletteWheel(
-    ArrayList<Individual> population, double[] fitnessValues) {
+  public static Parents RouletteWheel(
+    Population population, long[] fitnessValues) {
+    
+    ArrayList<Individual> populationIndividuals = new ArrayList<>();
     
     @SuppressWarnings("unchecked")
-    ArrayList<Individual> newPopulation = 
-      (ArrayList<Individual>) population.clone();
     
-    double totalFitnessSum = sumOfFitness(fitnessValues);
-    
-    System.out.println("THE FITNESS VALUES OF THE INDIVIDUALS");
-    for(int q = 0; q < fitnessValues.length; q++) {
-      System.out.println(fitnessValues[q]);
-    }
+    long totalFitnessSum = sumOfFitness(fitnessValues);
     
     Parents parents = selectParentTargets(fitnessValues, totalFitnessSum);  
-  
-    return newPopulation; 
+    
+    return parents; 
   }
   
-  public static Parents selectParentTargets(double[] fitnessValues, double totalFitnessSum) {
-    
+  public static Parents selectParentTargets(long[] fitnessValues, double totalFitnessSum) {
+    System.out.printf("selectParentTargets([], %f)", totalFitnessSum);
     int target1Ind, target2Ind;
     
     target1Ind = selectTarget(fitnessValues, totalFitnessSum);
@@ -35,6 +30,7 @@ public class ParentSelection {
     
     /* Ensure that target2 is different, unless there is only one value */
     while(target2Ind == target1Ind && fitnessValues.length >= 1) {
+      System.out.println("picking 2nd target index");
       target2Ind = selectTarget(fitnessValues, totalFitnessSum);
     }
     
@@ -43,8 +39,8 @@ public class ParentSelection {
     return parents;
   }
   
-  public static int selectTarget(double[] fitnessValues, double totalFitnessSum) {
-    Random rand = new Random(System.currentTimeMillis());
+  public static int selectTarget(long[] fitnessValues, double totalFitnessSum) {
+    Random rand = new Random();
     
     double targetCumulative = rand.nextDouble() * totalFitnessSum;
     double currentCumulative = 0;
@@ -63,13 +59,12 @@ public class ParentSelection {
     return currentCumulativeIndex - 1;
   }
   
-  public static double sumOfFitness(double[] fitnessValues) {
-    double sum = 0;
+  public static long sumOfFitness(long[] fitnessValues) {
+    long sum = 0;
     int fitnessValueLen = fitnessValues.length;
     
     for(int q = 0; q < fitnessValueLen; q++) {
       sum += fitnessValues[q];
-      System.out.println(sum);
     }
     
     return sum;

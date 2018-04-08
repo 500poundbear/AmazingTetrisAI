@@ -6,18 +6,34 @@ package Engine;
 
 import java.util.Arrays;
 
+import Genetic.Generations;
 import Heuristics.Score;
 
 public class Trainer{
-  public static Boolean DISPLAY_GRAPHIC = true;
+  public static Boolean DISPLAY_GRAPHIC = false;
   public static int DISPLAY_GRAPHIC_NEW_PIECE_PERIOD = 300;
 
   private double[] weights;
 
+  private static int RUN_GAME_ITERATIONS = 30;
+
   public static void main(String[] args) {
+   
     Trainer x = new Trainer();
-    x.setWeights(new double[10]);  
-    System.out.printf("Game score: %d\n", x.runGame());
+    x.setWeights(ResultsLog.readWeightsFromFile(1));  
+    
+    double[] theweights = x.getWeights();
+    for(int q = 0; q < theweights.length; q++) {
+      System.out.printf("theweights[%d] = %f\n", q, theweights[q]);
+    }
+    
+    for(int q = 0; q < RUN_GAME_ITERATIONS; q++) {
+      System.out.printf("Game score: %d\n", x.runGame());
+    }
+  }
+  
+  public double[] getWeights() {
+    return weights;
   }
 
   public void setWeights(double[] weights) {
@@ -73,7 +89,7 @@ public class Trainer{
             maxInd = i;
         }
     }
-    System.out.printf("Picking move %d with value %f\n", maxInd, scores[maxInd]);
+    //System.out.printf("Picking move %d with value %f\n", maxInd, scores[maxInd]);
     return maxInd;
   }
 

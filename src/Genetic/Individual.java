@@ -3,10 +3,10 @@ import java.util.Random;
 
 public class Individual {
 
-  private static int WEIGHT_LOWER_BOUND = -5;
-  private static int WEIGHT_UPPER_BOUND = 5;
+  public static int WEIGHT_LOWER_BOUND = -5;
+  public static int WEIGHT_UPPER_BOUND = 5;
 
-  private int size;
+  public int size;
   private double[] weights;
   
   Random rand;
@@ -15,18 +15,17 @@ public class Individual {
     weights = new double[size];
     this.size = size;
     
-    rand = new Random(System.currentTimeMillis());
+    rand = new Random();
     
-    this.randomiseWeights();
   }
   
   public double[] getWeights() {
     return weights;
   }
   
-  private void randomiseWeights() {
+  public void randomiseWeights(double[] smallRandomWeights) {
     for(int q = 0; q < size; q++) {
-      weights[q] = this.rand.nextDouble() * (WEIGHT_UPPER_BOUND - WEIGHT_LOWER_BOUND) - WEIGHT_UPPER_BOUND;
+      weights[q] = smallRandomWeights[q] * (WEIGHT_UPPER_BOUND - WEIGHT_LOWER_BOUND) - WEIGHT_UPPER_BOUND;
     }
   }
   
@@ -40,6 +39,17 @@ public class Individual {
     }
     
     weights[pos] = value;
+  }
+  
+  public void setWeights(double[] weights) {
+    this.weights = weights;
+  }
+  
+  public void printWeights() {
+    for(int q = 0; q < weights.length; q++) {
+      System.out.print(weights[q] + " ");
+    }
+    System.out.print("\n");
   }
   
   public static void main(String[] args) {
