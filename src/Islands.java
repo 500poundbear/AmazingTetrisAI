@@ -1,10 +1,8 @@
-package Genetic;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
-import Engine.ResultsLog;
 
 public class Islands {
   

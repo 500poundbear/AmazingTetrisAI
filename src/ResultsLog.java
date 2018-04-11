@@ -1,8 +1,6 @@
 /*
  * CSV File Writer for results of test
  */
-package Engine;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,8 +9,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import Genetic.Population;
 
 public class ResultsLog {
   private static final String DELIMITER = ",";
@@ -31,7 +27,6 @@ public class ResultsLog {
   
   public static void writeBestNodes(double[] weights, long fitness){
     try {
-      System.out.println("SDFSDFSDF");
       FileWriter pw = new FileWriter(BEST_NODES_FILE_NAME,true);
       
       for(int q = 0; q < weights.length; q++) {
@@ -143,7 +138,7 @@ public class ResultsLog {
     
     BufferedReader br;
     String line = "";
-    double[] weights = new double[Genetic.Genetic.INDIVIDUAL_NUMBER_OF_HEURISTICS];
+    double[] weights = new double[Genetic.INDIVIDUAL_NUMBER_OF_HEURISTICS];
     int lineCount = 1;
     String[] strWeights;
     try {

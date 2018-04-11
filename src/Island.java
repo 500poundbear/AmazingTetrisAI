@@ -1,8 +1,6 @@
-package Genetic;
+
 
 import java.util.ArrayList;
-
-import Engine.ResultsLog;
 
 public class Island {
   ArrayList<Population> populations;

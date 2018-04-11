@@ -1,4 +1,4 @@
-package Engine;
+
 
 /*
  * Trainer is the entry point to all the various parts of this tetris AI.
@@ -6,7 +6,6 @@ package Engine;
 
 import java.util.Arrays;
 
-import Heuristics.Score;
 
 public class Trainer{
   public static Boolean DISPLAY_GRAPHIC = false;

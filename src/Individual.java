@@ -1,4 +1,4 @@
-package Genetic;
+
 import java.util.Random;
 
 public class Individual implements Comparable {

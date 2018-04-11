@@ -1,10 +1,3 @@
-package Genetic;
-/*
- * Traditional genetic algorithm implementation
- */
-
-import Engine.Trainer;
-import Engine.ResultsLog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,12 +9,12 @@ public class Genetic{
   Random rand;
  
   long cyclesCount = 0;
-  public static final int CYCLES = 500;
-  public static final int NUMBER_OF_ISLANDS = 100;
-  public static final int NUMBER_OF_GENERATIONS = 50;
-  public static final int ISLAND_NUMBER_OF_INDIVIDUALS = 100;
+  public static final int CYCLES = 2;
+  public static final int NUMBER_OF_ISLANDS = 2;
+  public static final int NUMBER_OF_GENERATIONS = 5;
+  public static final int ISLAND_NUMBER_OF_INDIVIDUALS = 12;
   public static final int INDIVIDUAL_NUMBER_OF_HEURISTICS = 10;
-  public static final int RUN_GAME_ITERATIONS = 10; 
+  public static final int RUN_GAME_ITERATIONS = 1; 
   private static final double SELECT_AND_MUTATE_BOTTOM_PERCENTAGE = 0.4;
 
   private static final boolean DEBUG = true;
@@ -57,7 +50,6 @@ public class Genetic{
         islands.set(q, runIsland(pp));
       }
       
-      System.out.printf("logging islands");
       Islands.logIslands(cyclesCount, islands);
       
       islands = Islands.redistribute(islands);   

@@ -1,5 +1,3 @@
-package Engine;
-
 public class PlayerSkeleton {
     private static final Boolean VERBOSE = true;
 

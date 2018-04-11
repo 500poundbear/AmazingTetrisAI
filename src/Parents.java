@@ -1,4 +1,4 @@
-package Genetic;
+
 
 public class Parents {
   int f, s;
