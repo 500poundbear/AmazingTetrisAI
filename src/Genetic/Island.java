@@ -13,11 +13,6 @@ public class Island {
   
   public void addPopulation(Population p) {
     populations.add(p);
-    
-    ResultsLog.writePopulationToFile(populations.size(), 
-                                     getMaximumFitnessScore(p), 
-                                     getMinimumFitnessScore(p), 
-                                     getMeanFitnessScore(p));
   }
 
   /*
@@ -36,37 +31,36 @@ public class Island {
    */
   
   public long getMaximumFitnessScore(Population p) {
-    ArrayList<Long> fitnessScores = p.getFitnessScores();
     
+    ArrayList<Individual> individuals = p.getPopulation();
     long maxValue = Long.MIN_VALUE;
-    for(int q = 0; q < fitnessScores.size(); q++) {
-      maxValue = (long) Math.max(maxValue, fitnessScores.get(q));
+    for(int q = 0; q < individuals.size(); q++) {
+      maxValue = (long) Math.max(maxValue, individuals.get(q).getFitness());
     }
     
     return maxValue;
   }
   
   public long getMinimumFitnessScore(Population p) {
-    ArrayList<Long> fitnessScores = p.getFitnessScores();
-    
-    long minValue = Long.MAX_VALUE;
-    
-    for(int q = 0; q < fitnessScores.size(); q++) {
-      minValue = Math.min(minValue,  fitnessScores.get(q));
+
+    ArrayList<Individual> individuals = p.getPopulation();
+    long minValue = Long.MAX_VALUE;    
+    for(int q = 0; q < individuals.size(); q++) {
+      minValue = Math.min(minValue,  individuals.get(q).getFitness());
     }
     
     return minValue;
   }
   
   public double getMeanFitnessScore(Population p) {
-    ArrayList<Long> fitnessScores = p.getFitnessScores();
     
+    ArrayList<Individual> individuals = p.getPopulation();
     long accum = 0;
     
-    for(int q = 0; q < fitnessScores.size(); q++) {
-      accum += fitnessScores.get(q);
+    for(int q = 0; q < individuals.size(); q++) {
+      accum += individuals.get(q).getFitness();
     }
     
-    return (double)accum/fitnessScores.size();
+    return (double)accum/individuals.size();
   }
 }

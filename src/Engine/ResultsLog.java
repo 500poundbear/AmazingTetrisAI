@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import Genetic.Population;
 
@@ -18,6 +21,62 @@ public class ResultsLog {
   private static final String LOG_FILE_NAME = "results.csv";
   private static final String READ_WEIGHTS_FILE_NAME = "readweights.csv";
   private static final String POPULATION_LOG_FILE_NAME = "populations.csv";
+  
+  static Date date = new Date();
+  static DateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
+  static String dateFormatted = formatter.format(date);
+  
+  private static final String TRAINING_ROUND_FILE_NAME = "traininground-" + dateFormatted+".csv";
+  private static final String BEST_NODES_FILE_NAME = "bestnodes-" + dateFormatted+".csv";
+  
+  public static void writeBestNodes(double[] weights, long fitness){
+    try {
+      System.out.println("SDFSDFSDF");
+      FileWriter pw = new FileWriter(BEST_NODES_FILE_NAME,true);
+      
+      for(int q = 0; q < weights.length; q++) {
+        pw.append(Double.toString(weights[q]));
+        pw.append(DELIMITER);
+      }
+      
+      pw.append(Long.toString(fitness));
+      pw.append(NEW_LINE_DELIMITER);
+      pw.flush();
+      pw.close();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }   
+  }
+  
+  public static void writeTrainingRound(long cycle, long island, double[] weights, long fitness){
+    try {
+      FileWriter pw = new FileWriter(TRAINING_ROUND_FILE_NAME,true);
+      
+      pw.append(Long.toString(cycle));
+      pw.append(DELIMITER);
+      
+      pw.append(Long.toString(island));
+      pw.append(DELIMITER);
+      
+      for(int q = 0; q < weights.length; q++) {
+        pw.append(Double.toString(weights[q]));
+        pw.append(DELIMITER);
+      }
+      
+      pw.append(Long.toString(fitness));
+      pw.append(NEW_LINE_DELIMITER);
+      pw.flush();
+      pw.close();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }     
+  }
+  
+  public static void writeBestNodesPerRound(long score, double[] weights){
+    
+  }
   
   public static void writeTrainerToFile(Trainer t, double score){
     try {
@@ -84,7 +143,7 @@ public class ResultsLog {
     
     BufferedReader br;
     String line = "";
-    double[] weights = new double[Genetic.Genetic.INDIVIDUAL_SIZE];
+    double[] weights = new double[Genetic.Genetic.INDIVIDUAL_NUMBER_OF_HEURISTICS];
     int lineCount = 1;
     String[] strWeights;
     try {

@@ -6,7 +6,6 @@ package Engine;
 
 import java.util.Arrays;
 
-import Genetic.Generations;
 import Heuristics.Score;
 
 public class Trainer{

@@ -9,18 +9,21 @@ public class MutateIndividual {
   static Random rand;
 
   public static Individual m(Individual i) {
-    
+    Individual j = new Individual();
     rand = new Random();
     double[] iWeights = i.getWeights();
     
     for(int q = 0; q < i.size; q++) {
+      
       if (rand.nextDouble() < MUTATION_PROBABILITY) {
         // Time to do some mutation
-        i.setWeight(q, mutateWeight(iWeights[q]));
+        j.setWeight(q, mutateWeight(iWeights[q]));
+      } else {
+        j.setWeight(q,  iWeights[q]);
       }
     }
     
-    return i;
+    return j;
   }
   
   private static double mutateWeight(double oldWeight) {
@@ -29,7 +32,7 @@ public class MutateIndividual {
   }
   
   public static void main(String[] args) {
-    Individual test = new Individual(10);
+    Individual test = new Individual();
     double[] testWeights = {0.1234, 4.3, 2.3, 4.1, 1.4, 5.6, -2, -3, -1, -0.5};
     test.setWeights(testWeights);
     System.out.printf("Old weights: \n");

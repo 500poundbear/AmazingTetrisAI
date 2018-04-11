@@ -15,14 +15,14 @@ public class ParentCrossOver {
     assert(a.size == b.size);
      
     Random rand;
-    rand = new Random(System.currentTimeMillis());
+    rand = new Random();
     
     int randIndex = rand.nextInt(a.size - 2) + 1;
     
-    System.out.printf("randIndex: 0 to %d, %d to %d\n", randIndex, randIndex + 1, a.size - 1);
+    //System.out.printf("randIndex: 0 to %d, %d to %d\n", randIndex, randIndex + 1, a.size - 1);
     
-    Individual newA = new Individual(a.size);
-    Individual newB = new Individual(a.size);
+    Individual newA = new Individual();
+    Individual newB = new Individual();
     
     double[] aWeights = a.getWeights();
     double[] bWeights = b.getWeights();
@@ -51,8 +51,8 @@ public class ParentCrossOver {
   }
   
   public static void main(String[] args) {
-    Individual testA = new Individual(10);
-    Individual testB = new Individual(10);
+    Individual testA = new Individual();
+    Individual testB = new Individual();
     double[] AWeights = {0.1234, 4.3, 2.3, 4.1, 1.4, 5.6, -2, -3, -1, -0.5};
     double[] BWeights = {0.3, 4.3, 9.3, 1.2, -4.5, 3.4, -2.3, 3, -3, -0.1};
     

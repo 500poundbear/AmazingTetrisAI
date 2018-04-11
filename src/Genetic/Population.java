@@ -30,14 +30,29 @@ public class Population {
   public void setIndividual(int ind, Individual newIndividual) {
     this.population.set(ind, newIndividual);
   }
-  
-  public void setFitnessScores(long[] scores) {
-    for(int q = 0; q < scores.length; q++) {
-      fitnessScores.add(scores[q]);
+ 
+  public void printPopulation() {
+    for(int q = 0; q < population.size(); q++) {
+      System.out.printf("%d\t", getIndividual(q).getFitness());
+      if (q % 5 == 9) {
+        System.out.printf("\n");
+      }
     }
+    System.out.printf("\n\n");
   }
   
-  public ArrayList<Long> getFitnessScores() {
-    return fitnessScores;
+  public static ArrayList<Individual> deepCopy (ArrayList<Individual> individuals) {
+    int individualsSize = individuals.size();
+    
+    ArrayList<Individual> newIndividuals = new ArrayList<Individual>();
+    
+    for(int q = 0; q < individualsSize; q++) {
+      Individual ni = new Individual();
+      ni.setWeights(individuals.get(q).getWeights());
+      ni.setFitness(individuals.get(q).getFitness());
+      newIndividuals.add(ni);
+    }
+    
+    return newIndividuals;
   }
 }
