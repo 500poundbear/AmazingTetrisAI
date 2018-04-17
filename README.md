@@ -1,4 +1,10 @@
-# How to run on HPC.
+# Branches
+
+1) Single threaded - master branch 
+
+2) Multi threaded - parallel branch
+
+# How to run on HPC
 
 1) Change the job1_script.txt file (change to your NUSID 
 2) ssh into HPC (we used atlas7) 
