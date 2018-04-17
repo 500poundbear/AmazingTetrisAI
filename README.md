@@ -1,3 +1,13 @@
+# How to run on HPC.
+
+1) Change the job1_script.txt file (change to your NUSID 
+2) ssh into HPC (we used atlas7) 
+3) run `qsub job1_script.txt`
+4) run `qstat` to verify that your job is queued
+5) To delete a task, `qdel [taskname]`
+
+Set run_me.sh to runnable `chmod +x run_me.sh`
+
 # Hello there
 
 You can pull directly into your eclipse workspace.
