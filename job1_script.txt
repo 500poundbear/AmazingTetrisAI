@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#PBS -P e0003000
+#PBS -q parallel24
+#PBS -l select=1:ncpus=24:mpiprocs=24:mem=60GB
+#PBS -j oe
+#PBS -N e0003000job
+###  -N e0003000job: e0003000output
+
+cd $PBS_O_WORKDIR;
+
+source /home/svu/e0003000/AIProject/src/run_me.sh
+mpirun -f ${PBS_NODEFILE} Java  /AIProject/src/Genetic
+
+##--- END HERE ---
